@@ -9,16 +9,16 @@
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
   </head>
-  <script src="marked.min.js"></script>
+  <script src="markdown-it.min.js"></script>
   <body>
     <div id="container">
       # Hello World I am Shazin <br />
       Some text with KaTeX syntax: $( E = mc^2 )$ and $F = ma$ <br />
       $x^3$ <br />
       $$\int_0^{\pi/2} sin^mx+ cos^nx dx$$ <br />
-      ## Laplacian Transform Well to Do So we do something like below
-      Hello I am shazin and you are watching 9xe
-      Hahahaah I and love to do stuffs as well lamo
+      ## Laplacian Transform Well to Do So we do something like below Hello I am
+      shazin and you are watching 9xe Hahahaah I and love to do stuffs as well
+      lamo
     </div>
     <link rel="stylesheet" href="style.css" />
   </body>
@@ -26,21 +26,22 @@
   <script src="auto-render.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("container").innerHTML = marked.parse(
+      const md = window.markdownit();
+      document.getElementById("container").innerHTML = md.render(
         document.getElementById("container").innerText
       );
-      renderMathInElement(document.body, {
-        // customised options
-        // • auto-render specific keys, e.g.:
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "$", right: "$", display: false },
-          { left: "\\(", right: "\\)", display: false },
-          { left: "\\[", right: "\\]", display: true },
-        ],
-        // • rendering keys, e.g.:
-        throwOnError: false,
-      });
+      // renderMathInElement(document.body, {
+      //   // customised options
+      //   // • auto-render specific keys, e.g.:
+      //   delimiters: [
+      //     { left: "$$", right: "$$", display: true },
+      //     { left: "$", right: "$", display: false },
+      //     { left: "\\(", right: "\\)", display: false },
+      //     { left: "\\[", right: "\\]", display: true },
+      //   ],
+      //   // • rendering keys, e.g.:
+      //   throwOnError: false,
+      // });
     });
   </script>
 </html>
