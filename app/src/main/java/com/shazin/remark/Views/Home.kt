@@ -50,13 +50,12 @@ fun Home(navHostController: NavHostController){
 fun HomeHeader(navHostController: NavHostController){
     Column(modifier = Modifier
         .fillMaxSize()
-        
         .padding(top = 50.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ){
         Text(text = "Notes", style = MaterialTheme.typography.displayLarge)
-        Spacer(modifier = Modifier.height(17.dp))
+        Spacer(modifier = Modifier.height(25.dp))
         // Search
         SearchBox()
         NoNoteFound(navHostController = navHostController)
@@ -66,7 +65,6 @@ fun HomeHeader(navHostController: NavHostController){
 fun SearchBox(){
     Box(modifier =
     Modifier
-
         .clip(RoundedCornerShape(25.dp))
         .clickable { }
         .fillMaxWidth(0.8f)
