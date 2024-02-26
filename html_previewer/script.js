@@ -1,5 +1,5 @@
 const container = document.getElementById("container");
-const sects = document.querySelectorAll("#container section");
+const sects = document.querySelectorAll("#container textarea");
 
 const md = window.markdownit();
 // document.addEventListener("DOMContentLoaded", function () {
@@ -45,10 +45,11 @@ for (var i = 0; i < sects.length; i++) {
       console.log(this.innerHTML);
       process_format_unit(this.innerText, this);
       buffer = "";
-      const child = document.createElement("p");
+      const child = document.createElement("section");
       child.contentEditable = true;
       container.append(child);
       current_node++;
+      this.blur();
       sects[current_node].focus();
     }
   });

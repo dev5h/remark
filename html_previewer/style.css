@@ -42,6 +42,6 @@ div#container {
 div#container:focus {
   outline: none;
 }
-#container p {
+#container textarea {
   padding: 10px 0px;
 }
