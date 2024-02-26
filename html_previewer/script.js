@@ -1,5 +1,6 @@
 const container = document.getElementById("container");
 const ps = document.querySelectorAll("#container p");
+
 const md = window.markdownit();
 // document.addEventListener("DOMContentLoaded", function () {
 
@@ -32,7 +33,8 @@ function process_format(content) {}
 var buffer = "";
 for (var i = 0; i < ps.length; i++) {
   ps[i].onkeyup = function () {
-    buffer += container.innerText;
+    console.log(ps[i]);
+    buffer += ps[i].innerText;
   };
 }
 
@@ -42,6 +44,9 @@ for (var i = 0; i < ps.length; i++) {
     if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
       process_format_unit(ps[i].innerText, ps[i]);
       buffer = "";
+      const child = document.createElement("p");
+      container.appendChild(child);
+      child.focus();
     }
   });
 }
