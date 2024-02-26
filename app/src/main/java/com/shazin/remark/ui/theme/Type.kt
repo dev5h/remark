@@ -27,7 +27,7 @@ val customTypography =Typography(
     headlineLarge = customTextStyle,
     headlineMedium = customTextStyle,
     headlineSmall = customTextStyle,
-    displayLarge = TextStyle.Default,
+    displayLarge = displayLarge,
     displayMedium = customTextStyle,
     displaySmall = customTextStyle,
 
