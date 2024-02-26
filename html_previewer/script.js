@@ -1,5 +1,5 @@
 const container = document.getElementById("container");
-const ps = document.querySelectorAll("#container p");
+const sects = document.querySelectorAll("#container section");
 
 const md = window.markdownit();
 // document.addEventListener("DOMContentLoaded", function () {
@@ -24,22 +24,22 @@ function process_format_unit(rawstr, target) {
   target.innerHTML = md.render(rawstr);
 }
 
-ps[ps.length - 1].contentEditable = true;
+sects[sects.length - 1].contentEditable = true;
 var current_node = 0;
 // function that process and sets the container
 function process_format(content) {}
 
 // record buffer
 var buffer = "";
-for (var i = 0; i < ps.length; i++) {
-  ps[i].onkeyup = function () {
+for (var i = 0; i < sects.length; i++) {
+  sects[i].onkeyup = function () {
     buffer += this.innerText;
   };
 }
 
 // listen for enter event
-for (var i = 0; i < ps.length; i++) {
-  ps[i].addEventListener("keypress", function (event) {
+for (var i = 0; i < sects.length; i++) {
+  sects[i].addEventListener("keypress", function (event) {
     if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
       event.preventDefault();
       console.log(this.innerHTML);
@@ -47,9 +47,9 @@ for (var i = 0; i < ps.length; i++) {
       buffer = "";
       const child = document.createElement("p");
       child.contentEditable = true;
-      container.appendChild(child);
+      container.append(child);
       current_node++;
-      ps[current_node].focus();
+      sects[current_node].focus();
     }
   });
 }
