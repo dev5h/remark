@@ -45,7 +45,7 @@ for (var i = 0; i < sects.length; i++) {
       console.log(this.innerHTML);
       process_format_unit(this.innerText, this);
       buffer = "";
-      const child = document.createElement("section");
+      const child = document.createElement("textarea");
       child.contentEditable = true;
       container.append(child);
       current_node++;
