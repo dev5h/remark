@@ -19,6 +19,7 @@ const ps = document.querySelectorAll("#container p");
 // });
 
 ps[ps.length - 1].contentEditable = true;
+var target_p = null;
 // function that process and sets the container
 function process_format(content) {}
 

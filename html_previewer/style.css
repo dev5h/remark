@@ -42,7 +42,6 @@ div#container {
 div#container:focus {
   outline: none;
 }
-.start {
-  background-color: red;
-  height: 15px;
+#container p {
+  padding: 10px 0px;
 }
