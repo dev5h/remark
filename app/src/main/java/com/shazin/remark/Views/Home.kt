@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.shazin.remark.Routes
 import com.shazin.remark.Widgets.NoNoteFound
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,7 +38,7 @@ import com.shazin.remark.Widgets.NoNoteFound
 fun Home(navHostController: NavHostController){
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = { navHostController.navigate(Routes.Writer.path) }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "")
             }
         }

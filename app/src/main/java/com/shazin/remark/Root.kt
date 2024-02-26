@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.shazin.remark.Views.Home
+import com.shazin.remark.Views.Writer
 
 @Composable
 fun Root(navHostController: NavHostController){
@@ -13,6 +14,8 @@ fun Root(navHostController: NavHostController){
         composable(Routes.Home.path){
             Home(navHostController = navHostController)
         }
-        composable()
+        composable(Routes.Writer.path){
+            Writer(navHostController = navHostController)
+        }
     }
 }
