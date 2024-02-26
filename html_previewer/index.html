@@ -6,13 +6,8 @@
     <link rel="stylesheet" href="katex.min.css" />
 
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script defer src="katex.min.js"></script>
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script
-      src="auto-render.min.js"
-      onload="renderMathInElement(document.body);"
-    ></script>
   </head>
 
   <body>
@@ -21,16 +16,20 @@
       $x^3$
     </div>
   </body>
-
+  <script src="katex.min.js"></script>
+  <script
+    src="auto-render.min.js"
+    onload="renderMathInElement(document.getElementById('container'), delimiters: [
+    {left: '$$', right: '$$', display: true},
+    {left: '$', right: '$', display: false},
+    {left: '\\(', right: '\\)', display: false},
+    {left: '\\[', right: '\\]', display: true}
+],
+// • rendering keys, e.g.:
+throwOnError : false);"
+  ></script>
   <script>
     // Function to render KaTeX formulas
-
-    katex.config({
-      delimiters: [
-        { left: "$$", right: "$$", display: true }, // $$...$$ for centered equations
-        { left: "$", right: "$", display: false }, // $...$ for inline equations
-      ],
-    });
     function renderKaTeX() {
       // Select all elements with class 'katex-container'
       var element = document.getElementById("container");
