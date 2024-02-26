@@ -12,7 +12,7 @@ import com.shazin.remark.R
 
 // Product Sans font
 val ProductSans = FontFamily(
-    Font(R.font.ProductSans_Regular, FontWeight.Normal, FontStyle.Normal)
+    Font(R.font.ps_regular, FontWeight.Normal, FontStyle.Normal)
 )
 
 // Set of Material typography styles to start with
