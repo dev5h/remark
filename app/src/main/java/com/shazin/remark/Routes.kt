@@ -5,4 +5,5 @@ sealed class Routes(
 ){
     object Home: Routes("/home")
     object Details: Routes("/details/{id}")
+    object Writer: Routes("writer")
 }

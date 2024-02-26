@@ -13,5 +13,6 @@ fun Root(navHostController: NavHostController){
         composable(Routes.Home.path){
             Home(navHostController = navHostController)
         }
+        composable()
     }
 }
