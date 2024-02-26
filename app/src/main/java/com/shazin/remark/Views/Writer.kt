@@ -23,7 +23,7 @@ fun Writer(navHostController: NavHostController){
             TopAppBar(
                 title = { /*TODO*/ },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = { navHostController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back button" )
                     }
                 }
@@ -35,3 +35,4 @@ fun Writer(navHostController: NavHostController){
             .padding(paddingValues))
     }
 }
+
