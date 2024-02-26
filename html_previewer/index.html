@@ -18,13 +18,19 @@
 
   <body>
     <div id="container">
-      Some text with KaTeX syntax: \( E = mc^2 \) and \( F = ma \). <br />
+      Some text with KaTeX syntax: $( E = mc^2 )$ and $F = ma$ <br />
       $x^3$
     </div>
   </body>
 
   <script>
     // Function to render KaTeX formulas
+    katex.config({
+      delimiters: [
+        { left: "$$", right: "$$", display: true }, // $$...$$ for centered equations
+        { left: "$", right: "$", display: false }, // $...$ for inline equations
+      ],
+    });
     function renderKaTeX() {
       // Select all elements with class 'katex-container'
       var element = document.getElementById("container");
