@@ -1,3 +1,12 @@
+@font-face {
+  font-family: ps_regular;
+  src: url(fonts/ProductSans-Regular.ttf);
+}
+@font-face {
+  font-family: ps_bold;
+  src: url(fonts/ProductSans-Bold.ttf);
+}
 body {
   background-color: #fff;
+  font-family: ps_regular;
 }
