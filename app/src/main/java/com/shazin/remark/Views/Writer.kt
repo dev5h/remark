@@ -35,23 +35,21 @@ fun Writer(navHostController: NavHostController){
     ) {paddingValues ->
         Box(modifier = Modifier
             .fillMaxSize()
-            .padding(paddingValues))
+            .padding(paddingValues)){
+            WebViewScreen()
+        }
     }
 }
 
 @Composable
 fun WebViewScreen(){
     AndroidView(
-        modifier =
-        Modifier
+        modifier = Modifier
             .fillMaxSize(),
         factory = {context->
             WebView(context).apply {
                 settings.javaScriptEnabled = true
                 webViewClient = WebViewClient()
-
-                settings.loadWithOverviewMode = true
-                settings.useWideViewPort = true
             }
         },
         update = {webview->
