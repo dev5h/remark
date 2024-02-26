@@ -2,6 +2,7 @@ package com.shazin.remark.Views
 
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
 
@@ -35,6 +37,7 @@ fun Writer(navHostController: NavHostController){
     ) {paddingValues ->
         Box(modifier = Modifier
             .fillMaxSize()
+            .background(Color.Cyan)
             .padding(paddingValues)){
             WebViewScreen()
         }
@@ -53,7 +56,7 @@ fun WebViewScreen(){
             }
         },
         update = {webview->
-            webview.loadData("<style>body{background: #C8FFD9}</style><h1>Hello World</h1>",  "text/html", "UTF-8")
+            webview.loadData("<html><body><h1>Hello, WebView in Jetpack Compose!</h1></body></html>",  "text/html", "UTF-8")
         }
     )
 }
