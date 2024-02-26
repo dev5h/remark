@@ -25,7 +25,7 @@ function process_format_unit(rawstr, target) {
 }
 
 ps[ps.length - 1].contentEditable = true;
-var target_p = null;
+var current_node = 0;
 // function that process and sets the container
 function process_format(content) {}
 
@@ -46,8 +46,10 @@ for (var i = 0; i < ps.length; i++) {
       process_format_unit(this.innerText, this);
       buffer = "";
       const child = document.createElement("p");
+      child.contentEditable = true;
       container.appendChild(child);
-      child.focus();
+      current_node++;
+      ps[current_node].focus();
     }
   });
 }
