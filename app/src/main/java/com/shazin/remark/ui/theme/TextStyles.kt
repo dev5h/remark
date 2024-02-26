@@ -4,12 +4,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose
+import androidx.compose.ui.unit.sp
 
 val displayLarge = TextStyle(
     fontFamily = ProductSans,
     fontWeight = FontWeight.Normal,
-    fontSize = ,
+    fontSize = 56.sp,
     lineHeight = Typography.displayLarge.lineHeight,
     letterSpacing = Typography.displayLarge.letterSpacing
 
