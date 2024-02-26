@@ -10,7 +10,6 @@
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
     <script
-      defer
       src="auto-render.min.js"
       onload="renderMathInElement(document.body);"
     ></script>
@@ -36,5 +35,6 @@
       var element = document.getElementById("container");
       katex.render(element.textContent, element);
     }
+    window.onload = renderKaTeX();
   </script>
 </html>
