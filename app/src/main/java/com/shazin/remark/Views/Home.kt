@@ -58,8 +58,9 @@ fun SearchBox(){
         .clip(RoundedCornerShape(25.dp))
         .fillMaxWidth(0.8f)
         .defaultMinSize(100.dp)
-        .height(25.dp)
-        .background(MaterialTheme.colorScheme.surfaceVariant)
+        .height(40.dp)
+        .background(MaterialTheme.colorScheme.surfaceVariant),
+        contentAlignment = Alignment.CenterStart
     ){
         Row(
             modifier = Modifier
@@ -68,8 +69,8 @@ fun SearchBox(){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Search Notes", color = MaterialTheme.colorScheme.surfaceVariant)
-            Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon", tint = MaterialTheme.colorScheme.surfaceVariant)
+            Text(text = "Search Notes", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon", tint = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 
