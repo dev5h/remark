@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.shazin.remark.Widgets.NoNoteFound
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,14 +40,14 @@ fun Home(navHostController: NavHostController){
             .padding(paddingValues)
         ){
             item {
-                HomeHeader()
+                HomeHeader(navHostController = navHostController)
             }
         }
     }
 }
 
 @Composable
-fun HomeHeader(){
+fun HomeHeader(navHostController: NavHostController){
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 50.dp),
@@ -57,6 +58,7 @@ fun HomeHeader(){
         Spacer(modifier = Modifier.height(17.dp))
         // Search
         SearchBox()
+        NoNoteFound(navHostController = navHostController)
     }
 }
 @Composable
@@ -65,7 +67,7 @@ fun SearchBox(){
     Modifier
 
         .clip(RoundedCornerShape(25.dp))
-        .clickable {  }
+        .clickable { }
         .fillMaxWidth(0.8f)
         .defaultMinSize(100.dp)
         .height(40.dp)
