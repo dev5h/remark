@@ -1,22 +1,22 @@
 const container = document.getElementById("container");
 const ps = document.querySelectorAll("#container p");
-document.addEventListener("DOMContentLoaded", function () {
-  const md = window.markdownit();
-  container.innerHTML = md.render(container.innerText);
+// document.addEventListener("DOMContentLoaded", function () {
+//   const md = window.markdownit();
+//   container.innerHTML = md.render(container.innerText);
 
-  renderMathInElement(document.body, {
-    // customised options
-    // • auto-render specific keys, e.g.:
-    delimiters: [
-      { left: "$$", right: "$$", display: true },
-      { left: "$", right: "$", display: false },
-      { left: "\\(", right: "\\)", display: false },
-      { left: "\\[", right: "\\]", display: true },
-    ],
-    // • rendering keys, e.g.:
-    throwOnError: false,
-  });
-});
+//   renderMathInElement(document.body, {
+//     // customised options
+//     // • auto-render specific keys, e.g.:
+//     delimiters: [
+//       { left: "$$", right: "$$", display: true },
+//       { left: "$", right: "$", display: false },
+//       { left: "\\(", right: "\\)", display: false },
+//       { left: "\\[", right: "\\]", display: true },
+//     ],
+//     // • rendering keys, e.g.:
+//     throwOnError: false,
+//   });
+// });
 
 ps[ps.length - 1].contentEditable = true;
 // function that process and sets the container

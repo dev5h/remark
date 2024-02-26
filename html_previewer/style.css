@@ -42,3 +42,7 @@ div#container {
 div#container:focus {
   outline: none;
 }
+.start {
+  background-color: red;
+  height: 15px;
+}
