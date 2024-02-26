@@ -2,13 +2,18 @@ package com.shazin.remark.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.shazin.remark.R
 
 
 // Product Sans font
-val ProductSans = FontFamily()
+val ProductSans = FontFamily(
+    Font(R.font.ProductSans_Regular, FontWeight.Normal, FontStyle.Normal)
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -19,6 +24,7 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )
+    
 
     /* Other default text styles to override
     titleLarge = TextStyle(
