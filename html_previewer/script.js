@@ -1,4 +1,5 @@
 const container = document.getElementById("container");
+const ps = document.querySelectorAll("#container p");
 document.addEventListener("DOMContentLoaded", function () {
   const md = window.markdownit();
   container.innerHTML = md.render(container.innerText);
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-container.contentEditable = true;
+ps[ps.length - 1].contentEditable = true;
 // function that process and sets the container
 function process_format(content) {}
 
