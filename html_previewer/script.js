@@ -33,8 +33,7 @@ function process_format(content) {}
 var buffer = "";
 for (var i = 0; i < ps.length; i++) {
   ps[i].onkeyup = function () {
-    console.log(ps[i]);
-    buffer += ps[i].innerText;
+    buffer += this.innerText;
   };
 }
 
@@ -42,7 +41,7 @@ for (var i = 0; i < ps.length; i++) {
 for (var i = 0; i < ps.length; i++) {
   ps[i].addEventListener("keypress", function (event) {
     if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
-      process_format_unit(ps[i].innerText, ps[i]);
+      process_format_unit(this.innerText, ps[i]);
       buffer = "";
       const child = document.createElement("p");
       container.appendChild(child);
