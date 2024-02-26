@@ -1,5 +1,5 @@
 const container = document.getElementById("container");
-const sects = document.querySelectorAll("#container textarea");
+var sects = document.querySelectorAll("#container textarea");
 
 const md = window.markdownit();
 // document.addEventListener("DOMContentLoaded", function () {
@@ -50,6 +50,13 @@ for (var i = 0; i < sects.length; i++) {
       container.append(child);
       current_node++;
       this.blur();
+      console.log(
+        "Trrying to focus on: " +
+          current_node +
+          " which is " +
+          sects[current_node]
+      );
+      sects = document.querySelectorAll("#container textarea");
       sects[current_node].focus();
     }
   });
