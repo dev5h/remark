@@ -1,7 +1,8 @@
 const container = document.getElementById("container");
 const ps = document.querySelectorAll("#container p");
+const md = window.markdownit();
 // document.addEventListener("DOMContentLoaded", function () {
-//   const md = window.markdownit();
+
 //   container.innerHTML = md.render(container.innerText);
 
 //   renderMathInElement(document.body, {
@@ -17,6 +18,10 @@ const ps = document.querySelectorAll("#container p");
 //     throwOnError: false,
 //   });
 // });
+
+function process_format_unit(rawstr, target) {
+  target.innerHTML = md.render(rawstr);
+}
 
 ps[ps.length - 1].contentEditable = true;
 var target_p = null;
