@@ -17,24 +17,21 @@
     </div>
   </body>
   <script src="katex.min.js"></script>
-  <script
-    src="auto-render.min.js"
-    onload="renderMathInElement(document.getElementById('container'), delimiters: [
-    {left: '$$', right: '$$', display: true},
-    {left: '$', right: '$', display: false},
-    {left: '\\(', right: '\\)', display: false},
-    {left: '\\[', right: '\\]', display: true}
-],
-// • rendering keys, e.g.:
-throwOnError : false);"
-  ></script>
+  <script src="auto-render.min.js"></script>
   <script>
-    // Function to render KaTeX formulas
-    function renderKaTeX() {
-      // Select all elements with class 'katex-container'
-      var element = document.getElementById("container");
-      katex.render(element.textContent, element);
-    }
-    window.onload = renderKaTeX();
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true },
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false,
+      });
+    });
   </script>
 </html>
