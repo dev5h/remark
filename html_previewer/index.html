@@ -22,6 +22,9 @@
   <script src="auto-render.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("container").innerHTML = marked.parse(
+        document.getElementById("container").innerText
+      );
       renderMathInElement(document.body, {
         // customised options
         // • auto-render specific keys, e.g.:
