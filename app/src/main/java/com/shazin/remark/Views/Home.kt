@@ -1,8 +1,10 @@
 package com.shazin.remark.Views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,14 +45,21 @@ fun HomeHeader(){
 @Composable
 fun SearchBarDisplay(){
     Box(modifier =
-        Modifier
-            .clip(RoundedCornerShape(25.dp))
-            .fillMaxWidth(0.8f)
-            .defaultMinSize(100.dp)
-            .height(25.dp)
-            .background(MaterialTheme.colorScheme.)
-    )
-    Card {
-
+    Modifier
+        .clip(RoundedCornerShape(25.dp))
+        .fillMaxWidth(0.8f)
+        .defaultMinSize(100.dp)
+        .height(25.dp)
+        .background(MaterialTheme.colorScheme.surface)
+    ){
+        Row(
+            modifier =  Modifier.fillMaxWidth()
+                .padding(15.dp, 0.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            
+        }
     }
+
 }
