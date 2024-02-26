@@ -10,9 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,11 +31,15 @@ import androidx.navigation.NavHostController
 @Composable
 fun Home(navHostController: NavHostController){
     Scaffold {paddingValues ->
-        Box(modifier =
+        LazyColumn(modifier =
         Modifier
             .fillMaxSize()
             .padding(paddingValues)
-        )
+        ){
+            item {
+                HomeHeader()
+            }
+        }
     }
 }
 
@@ -40,10 +48,11 @@ fun HomeHeader(){
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
         Text(text = "Notes", style = MaterialTheme.typography.displayLarge)
         // Search
+        SearchBox()
     }
 }
 @Composable
-fun SearchBarDisplay(){
+fun SearchBox(){
     Box(modifier =
     Modifier
         .clip(RoundedCornerShape(25.dp))
@@ -53,12 +62,14 @@ fun SearchBarDisplay(){
         .background(MaterialTheme.colorScheme.surface)
     ){
         Row(
-            modifier =  Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(15.dp, 0.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            
+            Text(text = "Search Notes")
+            Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
         }
     }
 
