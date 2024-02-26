@@ -6,13 +6,25 @@
   font-family: ps_bold;
   src: url(fonts/ProductSans-Bold.ttf);
 }
+@font-face {
+  font-family: ps_black;
+  src: url(fonts/ProductSans-Black.woff);
+}
+@font-face {
+  font-family: ps_light;
+  src: url(fonts/ProductSans-Light.woff);
+}
 body {
   background-color: #fff;
-  font-family: ps_regular;
+  font-family: ps_light;
 }
 h3,
 h4,
 h5,
 h6 {
   font-family: ps_bold;
+}
+h1,
+h2 {
+  font-family: ps_black;
 }
