@@ -9,9 +9,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 val displayLarge = TextStyle(
-    fontFamily = FontFamily.Default,
+    fontFamily = ProductSans,
     fontWeight = FontWeight.Normal,
-//    fontStyle = FontStyle.Normal,
-    fontSize = 56.sp,
+    fontStyle = FontStyle.Normal,
+    fontSize = 50.sp,
 
 )
