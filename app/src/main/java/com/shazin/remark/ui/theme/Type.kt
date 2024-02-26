@@ -15,7 +15,8 @@ val ProductSans = FontFamily(
     Font(R.font.ps_regular, FontWeight.Normal, FontStyle.Normal)
 )
 
-// Custom text style 
+// Custom text style
+face
 
 val customTypography = Typography()
 // Set of Material typography styles to start with
