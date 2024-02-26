@@ -1,10 +1,12 @@
 package com.shazin.remark.Views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,8 +47,14 @@ fun Home(navHostController: NavHostController){
 
 @Composable
 fun HomeHeader(){
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 50.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+        ){
         Text(text = "Notes", style = MaterialTheme.typography.displayLarge)
+        Spacer(modifier = Modifier.height(17.dp))
         // Search
         SearchBox()
     }
@@ -55,7 +63,9 @@ fun HomeHeader(){
 fun SearchBox(){
     Box(modifier =
     Modifier
+
         .clip(RoundedCornerShape(25.dp))
+        .clickable {  }
         .fillMaxWidth(0.8f)
         .defaultMinSize(100.dp)
         .height(40.dp)
@@ -75,3 +85,4 @@ fun SearchBox(){
     }
 
 }
+
