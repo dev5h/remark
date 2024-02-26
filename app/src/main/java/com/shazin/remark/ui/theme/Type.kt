@@ -15,18 +15,19 @@ val ProductSans = FontFamily(
     Font(R.font.ps_regular, FontWeight.Normal, FontStyle.Normal)
 )
 
+
 // Custom text style
 val customTextStyle =  TextStyle(fontFamily = ProductSans)
 
 // Custom typography
 val customTypography =Typography(
-    bodyLarge = customTextStyle,
+    bodyLarge = TextStyle.Default,
     bodyMedium = customTextStyle,
     bodySmall = customTextStyle,
     headlineLarge = customTextStyle,
     headlineMedium = customTextStyle,
     headlineSmall = customTextStyle,
-    displayLarge = customTextStyle,
+    displayLarge = TextStyle.Default,
     displayMedium = customTextStyle,
     displaySmall = customTextStyle,
 
