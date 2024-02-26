@@ -16,7 +16,7 @@ val ProductSans = FontFamily(
 )
 
 // Custom text style
-face
+val customStyle =  TextStyle()
 
 val customTypography = Typography()
 // Set of Material typography styles to start with
