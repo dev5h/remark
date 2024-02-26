@@ -1,6 +1,7 @@
 package com.shazin.remark.Views
 
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -43,8 +44,15 @@ fun WebViewScreen(){
     AndroidView(
         factory = {context->
             WebView(context).apply {
-                settings.
+                settings.javaScriptEnabled = true
+                webViewClient = WebViewClient()
+
+                settings.loadWithOverviewMode = true
+                settings.useWideViewPort = true
             }
+        },
+        update = {webview, _->
+            webview.load
         }
     )
 }
