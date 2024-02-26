@@ -25,14 +25,18 @@ function process_format(content) {}
 
 // record buffer
 var buffer = "";
-container.onkeyup = function () {
-  buffer += container.innerText;
-};
+for (var i = 0; i < ps.length; i++) {
+  ps[i].onkeyup = function () {
+    buffer += container.innerText;
+  };
+}
 
 // listen for enter event
-container.addEventListener("keypress", function (event) {
-  if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
-    process_format(container.inner);
-    buffer = "";
-  }
-});
+for (var i = 0; i < ps.length; i++) {
+  ps[i].addEventListener("keypress", function (event) {
+    if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
+      process_format(container.inner);
+      buffer = "";
+    }
+  });
+}
