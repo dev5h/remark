@@ -1,8 +1,7 @@
+const container = document.getElementById("container");
 document.addEventListener("DOMContentLoaded", function () {
   const md = window.markdownit();
-  document.getElementById("container").innerHTML = md.render(
-    document.getElementById("container").innerText
-  );
+  container.innerHTML = md.render(container.innerText);
 
   renderMathInElement(document.body, {
     // customised options
@@ -17,3 +16,5 @@ document.addEventListener("DOMContentLoaded", function () {
     throwOnError: false,
   });
 });
+
+container.contentEditable = true;
