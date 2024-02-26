@@ -10,7 +10,5 @@ val displayLarge = TextStyle(
     fontFamily = ProductSans,
     fontWeight = FontWeight.Normal,
     fontSize = 56.sp,
-    lineHeight = Typography.displayLarge.lineHeight,
-    letterSpacing = Typography.displayLarge.letterSpacing
 
 )
