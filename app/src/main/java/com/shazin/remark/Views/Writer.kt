@@ -42,6 +42,9 @@ fun Writer(navHostController: NavHostController){
 @Composable
 fun WebViewScreen(){
     AndroidView(
+        modifier =
+        Modifier
+            .fillMaxSize(),
         factory = {context->
             WebView(context).apply {
                 settings.javaScriptEnabled = true
@@ -51,8 +54,8 @@ fun WebViewScreen(){
                 settings.useWideViewPort = true
             }
         },
-        update = {webview, _->
-            webview.load
+        update = {webview->
+            webview.loadData("<style>body{background: #C8FFD9}</style><h1>Hello World</h1>",  "text/html", "UTF-8")
         }
     )
 }
