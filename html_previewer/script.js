@@ -18,3 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 container.contentEditable = true;
+// function that process and sets the container
+function process_format(content) {}
+
+// record buffer
+var buffer = "";
+container.onkeyup = function () {
+  buffer += container.innerText;
+};
+
+// listen for enter event
+container.addEventListener("keypress", function (event) {
+  if (event.key === "Enter" || event.keyCode === 13 || event.which === 13) {
+    process_format(container.inner);
+    buffer = "";
+  }
+});
