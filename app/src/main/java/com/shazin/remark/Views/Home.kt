@@ -49,7 +49,8 @@ fun Home(navHostController: NavHostController){
 @Composable
 fun HomeHeader(navHostController: NavHostController){
     Column(modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxSize()
+        
         .padding(top = 50.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
 
