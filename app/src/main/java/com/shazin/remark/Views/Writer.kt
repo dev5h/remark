@@ -1,62 +1,131 @@
-package com.shazin.remark.Views
+    package com.shazin.remark.Views
 
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavHostController
+    import androidx.compose.ui.graphics.vector.ImageVector
+    import androidx.compose.ui.res.vectorResource
+    import android.webkit.WebView
+    import android.webkit.WebViewClient
+    import androidx.compose.foundation.layout.Box
+    import androidx.compose.foundation.layout.Column
+    import androidx.compose.foundation.layout.fillMaxSize
+    import androidx.compose.foundation.layout.fillMaxWidth
+    import androidx.compose.foundation.layout.padding
+    import androidx.compose.foundation.rememberScrollState
+    import androidx.compose.foundation.text.BasicTextField
+    import androidx.compose.foundation.text.KeyboardOptions
+    import androidx.compose.foundation.verticalScroll
+    import androidx.compose.material.icons.Icons
+    import androidx.compose.material.icons.filled.ArrowBack
+    import androidx.compose.material3.ExperimentalMaterial3Api
+    import androidx.compose.material3.Icon
+    import androidx.compose.material3.IconButton
+    import androidx.compose.material3.MaterialTheme
+    import androidx.compose.material3.Scaffold
+    import androidx.compose.material3.Text
+    import androidx.compose.material3.TopAppBar
+    import androidx.compose.runtime.Composable
+    import androidx.compose.runtime.LaunchedEffect
+    import androidx.compose.runtime.mutableStateOf
+    import androidx.compose.runtime.remember
+    import androidx.compose.ui.ExperimentalComposeUiApi
+    import androidx.compose.ui.Modifier
+    import androidx.compose.ui.focus.FocusRequester
+    import androidx.compose.ui.focus.focusRequester
+    import androidx.compose.ui.graphics.Brush
+    import androidx.compose.ui.graphics.SolidColor
+    import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+    import androidx.compose.ui.platform.LocalWindowInfo
+    import androidx.compose.ui.text.TextStyle
+    import androidx.compose.ui.text.input.KeyboardType
+    import androidx.compose.ui.text.input.TextFieldValue
+    import androidx.compose.ui.text.input.VisualTransformation
+    import androidx.compose.ui.unit.dp
+    import androidx.compose.ui.unit.sp
+    import androidx.compose.ui.viewinterop.AndroidView
+    import androidx.navigation.NavHostController
+    import com.shazin.remark.R
+    import com.shazin.remark.readHTMLFromRaw
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Writer(navHostController: NavHostController){
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { /*TODO*/ },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.popBackStack() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back button" )
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun Writer(navHostController: NavHostController){
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { /*TODO*/ },
+                    navigationIcon = {
+                        IconButton(onClick = { navHostController.popBackStack() }) {
+                            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back button" )
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(imageVector = ImageVector.vectorResource(R.drawable.visibility), contentDescription ="Preview Icon" )
+                        }
                     }
-                }
-            )
-        }
-    ) {paddingValues ->
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Cyan)
-            .padding(paddingValues)){
-            WebViewScreen()
+                )
+            }
+        ) {paddingValues ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)){
+                Writer_Input(navHostController)
+            }
         }
     }
-}
 
-@Composable
-fun WebViewScreen(){
-    AndroidView(
-        modifier = Modifier
-            .fillMaxSize(),
-        factory = {context->
-            WebView(context).apply {
-                settings.javaScriptEnabled = true
-                webViewClient = WebViewClient()
+    @OptIn(ExperimentalComposeUiApi::class)
+    @Composable
+    fun Writer_Input(navHostController: NavHostController){
+        val textState = remember { mutableStateOf("") }
+        val keyboardController = LocalSoftwareKeyboardController.current
+        val focusRequester = FocusRequester()
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 15.dp)
+        ) {
+            LaunchedEffect(Unit) {
+                focusRequester.requestFocus()
             }
-        },
-        update = {webview->
-            webview.loadData("<html><body><h1>Hello, WebView in Jetpack Compose!</h1></body></html>",  "text/html", "UTF-8")
+            Box(modifier = Modifier.fillMaxWidth()){
+                Text(text = "March 12 · 123 Characters")
+            }
+                    BasicTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                            .focusRequester(focusRequester),
+                        value = textState.value,
+                        cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
+                        onValueChange = {textState.value = it},
+                        textStyle = TextStyle(
+                            color = MaterialTheme.colorScheme.onBackground,
+                        ),
+                        maxLines = Int.MAX_VALUE,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, autoCorrect = false),
+                )
         }
-    )
-}
+
+    }
+
+
+    @Composable
+    fun WebViewScreen(){
+        AndroidView(
+            modifier = Modifier
+                .fillMaxSize(),
+            factory = {context->
+                WebView(context).apply {
+                    settings.javaScriptEnabled = true
+                    webViewClient = WebViewClient()
+                    loadDataWithBaseURL(
+                        "file:///android_res/raw/",
+                        readHTMLFromRaw(context, R.raw.index),
+                        "text/html",
+                        "UTF-8",
+                        null
+                    )
+                }
+            }
+        )
+    }
