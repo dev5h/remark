@@ -19,13 +19,9 @@ window.WebFontConfig = {
 
 const container = document.getElementById("container");
 const md = window.markdownit();
-
+const bg = get("bg");
+const textColor = get("fg");
 document.addEventListener("DOMContentLoaded", function () {
-  // set the bg
-  const bg = get("bg");
-  const textColor = get("fg");
-  document.body.style.background = bg;
-  document.body.style.color = "white";
   const md = window.markdownit();
   document.getElementById("container").innerHTML = md.render(
     document.getElementById("container").innerText
@@ -52,3 +48,9 @@ function get(name) {
   while ((match = r.exec(window.location))) p[match[1]] = match[2];
   return p[name];
 }
+
+window.onload = function () {
+  // set the bg
+  document.body.style.background = bg;
+  document.body.style.color = textColor;
+};
