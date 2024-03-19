@@ -8,5 +8,11 @@ import java.io.InputStreamReader
 
 fun getPreviewTemplate(context: Context){
     val input = context.assets.open("html/index.html")
-    
+    val bufferedReader = BufferedReader(InputStreamReader(input))
+    val stringBuilder = StringBuilder()
+    var line: String?
+    while (bufferedReader.readLine().also { line = it } != null) {
+        stringBuilder.append(line)
+    }
+    println(stringBuilder)
 }

@@ -46,7 +46,8 @@
     import androidx.compose.ui.viewinterop.AndroidView
     import androidx.navigation.NavHostController
     import com.shazin.remark.R
-    import com.shazin.remark.readHTMLFromRaw
+    import com.shazin.remark.getPreviewTemplate
+
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -128,6 +129,7 @@
 
     @Composable
     fun WebViewScreen(context: Context){
+        getPreviewTemplate(context)
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { context ->
