@@ -138,6 +138,10 @@
             },
             update = { webView ->
                 webView.loadUrl("file:///android_asset/html/index.html")
+                val css  = " body {background: red;}"
+                val js = """
+                    
+                """.trimIndent()
             }
         )
     }
