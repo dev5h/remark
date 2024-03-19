@@ -6,6 +6,7 @@
     import androidx.compose.ui.res.vectorResource
     import android.webkit.WebView
     import android.webkit.WebViewClient
+    import androidx.compose.foundation.background
     import androidx.compose.foundation.layout.Box
     import androidx.compose.foundation.layout.Column
     import androidx.compose.foundation.layout.fillMaxSize
@@ -34,6 +35,7 @@
     import androidx.compose.ui.focus.focusRequester
     import androidx.compose.ui.graphics.Brush
     import androidx.compose.ui.graphics.SolidColor
+    import androidx.compose.ui.graphics.toArgb
     import androidx.compose.ui.platform.LocalContext
     import androidx.compose.ui.platform.LocalSoftwareKeyboardController
     import androidx.compose.ui.platform.LocalWindowInfo
@@ -130,18 +132,22 @@
     @Composable
     fun WebViewScreen(context: Context){
         val htmlTemplate = getPreviewTemplate(context)
+        val bg =MaterialTheme.colorScheme.background.toArgb()
         AndroidView(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
             factory = { context ->
                 WebView(context).apply {
                     settings.javaScriptEnabled = true
                     settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                     webViewClient = WebViewClient()
 
+
                 }
             },
             update = { webView ->
                 webView.loadUrl("file:///android_asset/html/index.html?bg=red&fg=fuck")
+                webView.setBackgroundColor(bg)
             }
         )
     }

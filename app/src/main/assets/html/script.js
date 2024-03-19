@@ -21,6 +21,11 @@ const container = document.getElementById("container");
 const md = window.markdownit();
 
 document.addEventListener("DOMContentLoaded", function () {
+  // set the bg
+  const bg = get("bg");
+  const textColor = get("fg");
+  document.body.style.background = bg;
+  document.body.style.color = textColor;
   const md = window.markdownit();
   document.getElementById("container").innerHTML = md.render(
     document.getElementById("container").innerText
@@ -47,4 +52,3 @@ function get(name) {
   while ((match = r.exec(window.location))) p[match[1]] = match[2];
   return p[name];
 }
-document.getElementById("test").innerHTML = `${get("bg")}, ${get("fg")}`;
