@@ -48,6 +48,9 @@
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Writer(navHostController: NavHostController){
+        val showPreview = remember {
+            mutableStateOf(false)
+        }
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -58,7 +61,7 @@
                         }
                     },
                     actions = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { showPreview.value = !showPreview.value }) {
                             Icon(imageVector = ImageVector.vectorResource(R.drawable.visibility), contentDescription ="Preview Icon" )
                         }
                     }
@@ -68,7 +71,11 @@
             Box(modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)){
-                Writer_Input(navHostController)
+                if (!showPreview.value){
+                    Writer_Input(navHostController = navHostController)
+                }else {
+                    WebViewScreen()
+                }
             }
         }
     }
