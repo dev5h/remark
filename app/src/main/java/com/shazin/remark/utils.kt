@@ -12,18 +12,14 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun getColorHex(color: Color): String {
-    val argb = color.toArgb()
-    return String.format("#%08X", argb)
-}
-
-fun replaceToken(source: String, token: String, replacement: String): String {
-    return source.replace(token, replacement)
+fun getRGB(colorv: Color): String{
+    println("Color shits \nArgb${colorv.colorSpace.}")
+    return "rgb(${colorv.red}, ${colorv.green}, ${colorv.blue})"
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
+
+
 @Composable
 fun getPreviewTemplate(context: Context){
     val input = context.assets.open("html/index.html")
@@ -34,6 +30,7 @@ fun getPreviewTemplate(context: Context){
         stringBuilder.append(line)
     }
     var string  = stringBuilder.toString()
-    string  = string.replace("bgColor", getColorHex(MaterialTheme.colorScheme.background))
+    val m3c  = MaterialTheme.colorScheme
+    string  = string.replace("bgColor", getRGB( m3c.background))
     println(string)
 }
