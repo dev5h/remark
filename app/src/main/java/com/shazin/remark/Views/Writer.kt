@@ -49,6 +49,7 @@
     import androidx.navigation.NavHostController
     import com.shazin.remark.R
     import com.shazin.remark.getPreviewTemplate
+    import com.shazin.remark.getRGB
 
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -132,7 +133,8 @@
     @Composable
     fun WebViewScreen(context: Context){
         val htmlTemplate = getPreviewTemplate(context)
-        val bg =MaterialTheme.colorScheme.background.toArgb()
+        val bg =MaterialTheme.colorScheme.background
+        val onBg =MaterialTheme.colorScheme.onBackground
         AndroidView(
             modifier = Modifier.fillMaxSize()
                 .background(MaterialTheme.colorScheme.background),
@@ -146,8 +148,8 @@
                 }
             },
             update = { webView ->
-                webView.loadUrl("file:///android_asset/html/index.html?bg=red&fg=fuck")
-                webView.setBackgroundColor(bg)
+                webView.loadUrl("file:///android_asset/html/index.html?bg=${getRGB(bg)}&fg=#FFFFFF}")
+                webView.setBackgroundColor(bg.toArgb())
             }
         )
     }
