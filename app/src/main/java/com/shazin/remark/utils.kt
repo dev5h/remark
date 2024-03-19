@@ -12,16 +12,19 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 
-fun getRGB(colorv: Color): String{
-    println("Color shits \nArgb${colorv.colorSpace.}")
-    return "rgb(${colorv.red}, ${colorv.green}, ${colorv.blue})"
+fun getRGB(color: Color): String{
+    val argb = color.toArgb()
+    val red = (argb shr 16) and 0xFF
+    val green = (argb shr 8) and 0xFF
+    val blue = argb and 0xFF
+    return "rgb($red, $green, $blue)"
 }
 
 
 
 
 @Composable
-fun getPreviewTemplate(context: Context){
+fun getPreviewTemplate(context: Context): String{
     val input = context.assets.open("html/index.html")
     val bufferedReader = BufferedReader(InputStreamReader(input))
     val stringBuilder = StringBuilder()
@@ -32,5 +35,6 @@ fun getPreviewTemplate(context: Context){
     var string  = stringBuilder.toString()
     val m3c  = MaterialTheme.colorScheme
     string  = string.replace("bgColor", getRGB( m3c.background))
-    println(string)
+    string  = string.replace("fgColor", getRGB( m3c.onBackground))
+    return string
 }

@@ -129,7 +129,7 @@
 
     @Composable
     fun WebViewScreen(context: Context){
-        getPreviewTemplate(context)
+
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { context ->
@@ -140,14 +140,10 @@
                 }
             },
             update = { webView ->
-                webView.loadUrl("file:///android_asset/html/index.html")
-                val css  = " body {background: red;}"
-                val js = """
-                    document.body.style.background = "black"
-                    document.body.style.color = "white"
-                    alert("yo")
-                """.trimIndent()
-                webView.evaluateJavascript(js, null)
+                webView.loadData(
+                    data = getPreviewTemplate(context),
+                    mimeType = ""
+                )
             }
         )
     }
