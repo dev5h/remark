@@ -129,7 +129,7 @@
 
     @Composable
     fun WebViewScreen(context: Context){
-
+        val htmlTemplate = getPreviewTemplate(context)
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { context ->
@@ -140,10 +140,7 @@
                 }
             },
             update = { webView ->
-                webView.loadData(
-                    data = getPreviewTemplate(context),
-                    mimeType = ""
-                )
+                webView.loadUrl("file:///android_asset/html/index.html")
             }
         )
     }
