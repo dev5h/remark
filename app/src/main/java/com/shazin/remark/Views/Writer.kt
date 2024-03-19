@@ -1,5 +1,6 @@
     package com.shazin.remark.Views
 
+    import android.content.Context
     import android.webkit.WebSettings
     import androidx.compose.ui.graphics.vector.ImageVector
     import androidx.compose.ui.res.vectorResource
@@ -50,6 +51,7 @@
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Writer(navHostController: NavHostController){
+        val context = LocalContext.current
         val showPreview = remember {
             mutableStateOf(false)
         }
@@ -76,7 +78,7 @@
                 if (!showPreview.value){
                     Writer_Input(navHostController = navHostController)
                 }else {
-                    WebViewScreen()
+                    WebViewScreen(context = context)
                 }
             }
         }
@@ -125,8 +127,7 @@
 
 
     @Composable
-    fun WebViewScreen(){
-        val context = LocalContext.current
+    fun WebViewScreen(context: Context){
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { context ->
