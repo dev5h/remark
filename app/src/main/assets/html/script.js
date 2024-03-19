@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const bg = get("bg");
   const textColor = get("fg");
   document.body.style.background = bg;
-  document.body.style.color = textColor;
-  console.log(document.body.innerHTML);
+  document.body.style.color = "white";
   const md = window.markdownit();
   document.getElementById("container").innerHTML = md.render(
     document.getElementById("container").innerText
