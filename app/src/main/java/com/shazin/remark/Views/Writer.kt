@@ -18,6 +18,7 @@
     import androidx.compose.foundation.verticalScroll
     import androidx.compose.material.icons.Icons
     import androidx.compose.material.icons.filled.ArrowBack
+    import androidx.compose.material3.Button
     import androidx.compose.material3.ExperimentalMaterial3Api
     import androidx.compose.material3.Icon
     import androidx.compose.material3.IconButton
@@ -135,11 +136,13 @@
         val htmlTemplate = getPreviewTemplate(context)
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
+        val webView = remember { WebView(context) }
         AndroidView(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background),
             factory = { context ->
-                WebView(context).apply {
+                webView.apply {
                     settings.javaScriptEnabled = true
                     settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                     webViewClient = WebViewClient()
@@ -147,10 +150,15 @@
 
                 }
             },
-            update = { webView ->
-                webView.loadUrl("file:///android_asset/html/index.html?fg=white}")
-                webView.setBackgroundColor(bg.toArgb())
-                webView.evaluateJavascript("document.body.style.color = 'red'",null)
+            update = { wv ->
+                wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
+                wv.setBackgroundColor(bg.toArgb())
+
             }
         )
+
+        Button(onClick = { webView.reload() }) {
+            webView.evaluateJavascript("document.body.style.color = 'red'",null)
+            Text(text = "hello")
+        }
     }
