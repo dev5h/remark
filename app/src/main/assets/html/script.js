@@ -38,3 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
     throwOnError: false,
   });
 });
+
+// Util function to get the url parameter
+function get(name) {
+  var r = /[?&]([^=#]+)=([^&#]*)/g,
+    p = {},
+    match;
+  while ((match = r.exec(window.location))) p[match[1]] = match[2];
+  return p[name];
+}
+document.getElementById("test").innerHTML = `${get("bg")}, ${get("fg")}`;

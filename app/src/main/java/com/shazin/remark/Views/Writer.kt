@@ -141,7 +141,7 @@
                 }
             },
             update = { webView ->
-                webView.loadUrl("file:///android_asset/html/index.html")
+                webView.loadUrl("file:///android_asset/html/index.html?bg=red&fg=fuck")
             }
         )
     }
