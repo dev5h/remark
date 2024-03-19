@@ -148,8 +148,9 @@
                 }
             },
             update = { webView ->
-                webView.loadUrl("file:///android_asset/html/index.html?bg=${getRGB(bg)}&fg=white}")
+                webView.loadUrl("file:///android_asset/html/index.html?fg=white}")
                 webView.setBackgroundColor(bg.toArgb())
+                webView.evaluateJavascript("document.body.style.color = 'red'",null)
             }
         )
     }

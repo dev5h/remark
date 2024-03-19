@@ -5,14 +5,13 @@ const textColor = get("fg");
 window.onload = function () {
   // set the bg
   document.body.style.background = bg;
-  document.body.style.color = textColor;
 };
 document.addEventListener("DOMContentLoaded", function () {
   const md = window.markdownit();
   document.getElementById("container").innerHTML = md.render(
     document.getElementById("container").innerText
   );
-  renderMathInElement(document.body, {
+  renderMathInElement(container, {
     // customised options
     // • auto-render specific keys, e.g.:
     delimiters: [
@@ -24,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // • rendering keys, e.g.:
     throwOnError: false,
   });
+  container.style.color = textColor;
 });
 
 // Util function to get the url parameter
