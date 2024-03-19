@@ -14,6 +14,12 @@ import com.shazin.remark.R
 val ProductSans = FontFamily(
     Font(R.font.ps_regular, FontWeight.Normal, FontStyle.Normal)
 )
+val ProductSansBold = FontFamily(
+    Font(R.font.ps_bold, FontWeight.Bold, FontStyle.Normal)
+)
+val ProductSansBlack = FontFamily(
+    Font(R.font.ps_black, FontWeight.Black, FontStyle.Normal)
+)
 
 
 // Custom text style

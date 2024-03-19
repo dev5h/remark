@@ -13,5 +13,10 @@ val displayLarge = TextStyle(
     fontWeight = FontWeight.Normal,
     fontStyle = FontStyle.Normal,
     fontSize = 50.sp,
-
+)
+val bodySmall = TextStyle(
+    fontFamily = ProductSans,
+    fontWeight = FontWeight.Normal,
+    fontStyle = FontStyle.Normal,
+    fontSize = 12.sp,
 )

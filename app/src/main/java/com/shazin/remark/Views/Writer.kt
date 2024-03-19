@@ -87,8 +87,14 @@
             LaunchedEffect(Unit) {
                 focusRequester.requestFocus()
             }
-            Box(modifier = Modifier.fillMaxWidth()){
-                Text(text = "March 12 · 123 Characters")
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 12.dp)){
+                Text(
+                    text = "March 12 · 123 Characters",
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
                     BasicTextField(
                         modifier = Modifier
