@@ -140,8 +140,11 @@
                 webView.loadUrl("file:///android_asset/html/index.html")
                 val css  = " body {background: red;}"
                 val js = """
-                    
+                    document.body.style.background = "black"
+                    document.body.style.color = "white"
+                    alert("yo")
                 """.trimIndent()
+                webView.evaluateJavascript(js, null)
             }
         )
     }
