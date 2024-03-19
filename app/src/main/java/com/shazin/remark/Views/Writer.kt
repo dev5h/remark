@@ -1,5 +1,6 @@
     package com.shazin.remark.Views
 
+    import android.webkit.WebSettings
     import androidx.compose.ui.graphics.vector.ImageVector
     import androidx.compose.ui.res.vectorResource
     import android.webkit.WebView
@@ -32,6 +33,7 @@
     import androidx.compose.ui.focus.focusRequester
     import androidx.compose.ui.graphics.Brush
     import androidx.compose.ui.graphics.SolidColor
+    import androidx.compose.ui.platform.LocalContext
     import androidx.compose.ui.platform.LocalSoftwareKeyboardController
     import androidx.compose.ui.platform.LocalWindowInfo
     import androidx.compose.ui.text.TextStyle
@@ -124,21 +126,18 @@
 
     @Composable
     fun WebViewScreen(){
+        val context = LocalContext.current
         AndroidView(
-            modifier = Modifier
-                .fillMaxSize(),
-            factory = {context->
+            modifier = Modifier.fillMaxSize(),
+            factory = { context ->
                 WebView(context).apply {
                     settings.javaScriptEnabled = true
+                    settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                     webViewClient = WebViewClient()
-                    loadDataWithBaseURL(
-                        "file:///android_res/raw/",
-                        readHTMLFromRaw(context, R.raw.index),
-                        "text/html",
-                        "UTF-8",
-                        null
-                    )
                 }
+            },
+            update = { webView ->
+                webView.loadUrl("file:///android_asset/html/index.html")
             }
         )
     }
