@@ -153,7 +153,7 @@
             update = { wv ->
                 wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
                 wv.setBackgroundColor(bg.toArgb())
-
+                wv.evaluateJavascript("document.body.style.color = 'red'",null)
             }
         )
 
