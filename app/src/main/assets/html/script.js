@@ -18,14 +18,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // • rendering keys, e.g.:
     throwOnError: false,
   });
-  container.style.color = textColor;
 });
-
-// Util function to get the url parameter
-function get(name) {
-  var r = /[?&]([^=#]+)=([^&#]*)/g,
-    p = {},
-    match;
-  while ((match = r.exec(window.location))) p[match[1]] = match[2];
-  return p[name];
-}
