@@ -44,8 +44,13 @@ class MyWebViewClient(
             var styleTag = document.createElement('style');
             styleTag.innerHTML = `
                 pre {
-                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0.3f))}
-            }
+                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0.3f))};
+                color: ${getRGB(colorScheme.onSurfaceVariant)};
+                }
+                p code {
+                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0.3f))};
+                color: ${getRGB(colorScheme.onSurfaceVariant)}
+                }
             `;
             document.head.appendChild(styleTag);
         """.trimIndent()
