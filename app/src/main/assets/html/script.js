@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   lamo
   ## Code Snippet Samples
   Hello
+  Here's an \`inline code sample \`
   ### Code
   \`\`\`html
         <!DOCTYPE html>
