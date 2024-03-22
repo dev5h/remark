@@ -137,6 +137,7 @@
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
+        val webViewInitiated = remember{ mutableStateOf(false) }
         AndroidView(
             modifier = Modifier
                 .fillMaxSize()
@@ -152,16 +153,16 @@
             },
             update = { wv ->
                 wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
-
-                wv.evaluateJavascript("document.body.style.color = 'red'",null)
                 wv.setBackgroundColor(bg.toArgb())
-                wv.isForceDarkAllowed = true
-
+                webViewInitiated.value = true
             }
         )
+        LaunchedEffect(key1 = webViewInitiated.value) {
+            println("Ran")
+            webView.evaluateJavascript("document.body.style.color = 'red'",null)
+        }
 
         Button(onClick = {
-
             webView.evaluateJavascript("document.body.style.color = 'red'",null)
         }) {
 
