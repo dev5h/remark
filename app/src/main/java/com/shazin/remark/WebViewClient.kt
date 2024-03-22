@@ -27,7 +27,7 @@ class MyWebViewClient(
     override fun onPageFinished(view: WebView?, url: String?) {
         // This method is called when the WebView finishes loading a page.
         if (view != null) {
-            view.evaluateJavascript("document.body.style.color = 'red'",null)
+            view.evaluateJavascript("document.body.style.color = '${fg}'",null)
         }
         // You can perform actions here, such as hiding a loading indicator.
         super.onPageFinished(view, url)
