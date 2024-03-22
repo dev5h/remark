@@ -143,6 +143,7 @@
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
         val isSystemInDarkMode = isSystemInDarkTheme()
+        val colorScheme = MaterialTheme.colorScheme
         val isLoading = remember{mutableStateOf(true)}
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -156,7 +157,7 @@
                         webView.apply {
                             settings.javaScriptEnabled = true
                             settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode)
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode, colorScheme = colorScheme)
 
 
                         }

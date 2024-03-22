@@ -6,12 +6,15 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.MutableState
 
 class MyWebViewClient(
     val fg: String,
     val onLoad: ()->Unit,
-    val isSystemInDarkTheme: Boolean
+    val isSystemInDarkTheme: Boolean,
+    val colorScheme: ColorScheme
 ) : WebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
@@ -33,8 +36,20 @@ class MyWebViewClient(
         if (view != null) {
             view.evaluateJavascript("document.body.style.color = '${fg}'",null)
         }
-        if isSystemInDarkTheme
 
+        val css = """
+            
+        """.trimIndent()
+        val injectionJS= """
+            var styleTag = document.createElement('style');
+            styleTag.innerHTML = `
+                code {
+                background: ${getRGB(colorScheme.surfaceVariant)}
+            }
+            `;
+            document.head.appendChild(styleTag);
+        """.trimIndent()
+        view?.evaluateJavascript(injectionJS,null)
         onLoad()
         super.onPageFinished(view, url)
     }
