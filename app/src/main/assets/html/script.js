@@ -2,7 +2,26 @@ const container = document.getElementById("container");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize markdown-it with highlightjs plugin
-  var md = window.markdownit();
+  // Actual default values
+  const md = markdownit({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return (
+            '<pre><code class="hljs">' +
+            hljs.highlight(str, { language: lang, ignoreIllegals: true })
+              .value +
+            "</code></pre>"
+          );
+        } catch (__) {}
+      }
+
+      return (
+        '<pre><code class="hljs">' + md.utils.escapeHtml(str) + "</code></pre>"
+      );
+    },
+  });
+
   const test = `
   # Hello this is some markdown texts
   Hello world lamo here's a math formula for ya
