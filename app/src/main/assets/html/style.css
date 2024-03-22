@@ -17,6 +17,12 @@
 body {
   font-family: ps_light;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+
+    color: #ffffff; /* Dark text color */
+  }
+}
 h3,
 h4,
 h5,

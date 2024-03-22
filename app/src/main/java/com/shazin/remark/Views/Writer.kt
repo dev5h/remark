@@ -153,12 +153,15 @@
             update = { wv ->
                 wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
                 wv.setBackgroundColor(bg.toArgb())
-                wv.evaluateJavascript("document.body.style.color = 'red'",null)
+                wv.evaluateJavascript("document.body.style.color = 'blue'",null)
             }
         )
 
-        Button(onClick = { webView.reload() }) {
+        Button(onClick = {
+            webView.reload()
             webView.evaluateJavascript("document.body.style.color = 'red'",null)
+        }) {
+
             Text(text = "hello")
         }
     }
