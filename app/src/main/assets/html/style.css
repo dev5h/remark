@@ -14,6 +14,13 @@
   font-family: ps_light;
   src: url(fonts/ProductSans-Light.woff);
 }
+@font-face {
+  font-family: fira_code;
+  src: url(fonts/FiraCode-VariableFont_wght.woff);
+}
+code {
+  font-family: 'fira_code', monospace;
+}
 body {
   font-family: ps_light;
 }
