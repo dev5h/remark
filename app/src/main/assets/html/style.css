@@ -62,3 +62,8 @@ pre {
 p {
   padding: 11px 0px;
 }
+p code {
+  margin: 0px 3px;
+  padding: 1px 7px;
+  border-radius: 9px;
+}
