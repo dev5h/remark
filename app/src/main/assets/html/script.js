@@ -1,11 +1,11 @@
 const container = document.getElementById("container");
+const md = window.markdownit();
+
 document.addEventListener("DOMContentLoaded", function () {
-  markdownText = markdownText.replace(/\$\$([^$]+)\$\$/g, function(match, contents) {
-    // Escape asterisks
-    return match.replace(/\*/g, "\\*");
-});
+  const md = window.markdownit();
+  document.getElementById("container").innerHTML = md.render(
+    document.getElementById("container").innerText
   );
-  container.innerHTML = markdownText;
   renderMathInElement(container, {
     // customised options
     // • auto-render specific keys, e.g.:
@@ -18,4 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // • rendering keys, e.g.:
     throwOnError: false,
   });
+  container.style.color = textColor;
 });
+
+// Util function to get the url parameter
+function get(name) {
+  var r = /[?&]([^=#]+)=([^&#]*)/g,
+    p = {},
+    match;
+  while ((match = r.exec(window.location))) p[match[1]] = match[2];
+  return p[name];
+}
