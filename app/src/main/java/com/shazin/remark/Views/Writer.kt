@@ -141,11 +141,11 @@
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
 
-        val isLoading = remember{mutableStateOf(false)}
+        val isLoading = remember{mutableStateOf(true)}
         Box(
             modifier = Modifier.fillMaxSize(),
         ) {
-            if (!isLoading.value) {
+
                 AndroidView(
                     modifier = Modifier
                         .fillMaxSize()
@@ -165,8 +165,8 @@
 
                     }
                 )
-            }else {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+            if (isLoading.value)  {
+                Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center){
                     LinearProgressIndicator()
                 }
             }
