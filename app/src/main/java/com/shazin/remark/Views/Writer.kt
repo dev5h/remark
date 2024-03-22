@@ -140,8 +140,8 @@
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
-        val webViewInitiated = remember{ mutableStateOf(false) }
-        val isLoading = remember{mutableStateOf(true)}
+
+        val isLoading = remember{mutableStateOf(false)}
         Box(
             modifier = Modifier.fillMaxSize(),
         ) {
@@ -154,7 +154,7 @@
                         webView.apply {
                             settings.javaScriptEnabled = true
                             settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                            webViewClient = MyWebViewClient(fg = getRGB(onBg))
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false})
 
 
                         }
@@ -162,7 +162,7 @@
                     update = { wv ->
                         wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
                         wv.setBackgroundColor(bg.toArgb())
-                        webViewInitiated.value = true
+
                     }
                 )
             }else {

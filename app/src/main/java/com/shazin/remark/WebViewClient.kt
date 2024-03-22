@@ -9,7 +9,7 @@ import androidx.compose.runtime.MutableState
 
 class MyWebViewClient(
     val fg: String,
-    val isLoading : MutableState<Boolean>
+    val onLoad: ()->Unit
 ) : WebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
@@ -31,7 +31,7 @@ class MyWebViewClient(
         if (view != null) {
             view.evaluateJavascript("document.body.style.color = '${fg}'",null)
         }
-        // You can perform actions here, such as hiding a loading indicator.
+        onLoad()
         super.onPageFinished(view, url)
     }
 }
