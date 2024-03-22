@@ -22,6 +22,7 @@
     import androidx.compose.material3.ExperimentalMaterial3Api
     import androidx.compose.material3.Icon
     import androidx.compose.material3.IconButton
+    import androidx.compose.material3.LinearProgressIndicator
     import androidx.compose.material3.MaterialTheme
     import androidx.compose.material3.Scaffold
     import androidx.compose.material3.Text
@@ -30,6 +31,7 @@
     import androidx.compose.runtime.LaunchedEffect
     import androidx.compose.runtime.mutableStateOf
     import androidx.compose.runtime.remember
+    import androidx.compose.ui.Alignment
     import androidx.compose.ui.ExperimentalComposeUiApi
     import androidx.compose.ui.Modifier
     import androidx.compose.ui.focus.FocusRequester
@@ -139,34 +141,35 @@
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
         val webViewInitiated = remember{ mutableStateOf(false) }
-        AndroidView(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            factory = { context ->
-                webView.apply {
-                    settings.javaScriptEnabled = true
-                    settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                    webViewClient = MyWebViewClient(fg = getRGB(onBg))
+        val isLoading = remember{mutableStateOf(true)}
+        Box(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            if (!isLoading.value) {
+                AndroidView(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background),
+                    factory = { context ->
+                        webView.apply {
+                            settings.javaScriptEnabled = true
+                            settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg))
 
 
+                        }
+                    },
+                    update = { wv ->
+                        wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
+                        wv.setBackgroundColor(bg.toArgb())
+                        webViewInitiated.value = true
+                    }
+                )
+            }else {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                    LinearProgressIndicator()
                 }
-            },
-            update = { wv ->
-                wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
-                wv.setBackgroundColor(bg.toArgb())
-                webViewInitiated.value = true
             }
-        )
-        LaunchedEffect(key1 = webViewInitiated.value) {
-            println("Ran")
-            webView.evaluateJavascript("document.body.style.color = 'red'",null)
         }
 
-        Button(onClick = {
-            webView.evaluateJavascript("document.body.style.color = 'red'",null)
-        }) {
-
-            Text(text = "hello")
-        }
     }

@@ -5,9 +5,11 @@ import android.graphics.Color
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.runtime.MutableState
 
 class MyWebViewClient(
-    val fg: String
+    val fg: String,
+    val isLoading : MutableState<Boolean>
 ) : WebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
