@@ -17,6 +17,9 @@
 body {
   font-family: ps_light;
 }
+* {
+  color: inherit;
+}
 @media (prefers-color-scheme: dark) {
   body {
 

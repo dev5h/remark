@@ -152,8 +152,10 @@
             },
             update = { wv ->
                 wv.loadUrl("file:///android_asset/html/index.html?fg=white}")
-                    webView.evaluateJavascript("document.body.style.color = 'red'",null)
+
+                wv.evaluateJavascript("document.body.style.color = 'red'",null)
                 wv.setBackgroundColor(bg.toArgb())
+                wv.isForceDarkAllowed = true
 
             }
         )

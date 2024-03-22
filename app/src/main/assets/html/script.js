@@ -4,7 +4,7 @@ const bg = "black"
 const textColor = get("fg");
 window.onload = function () {
   // set the bg
-  document.body.style.background = bg;
+  document.body.style.color = textColor
 };
 document.addEventListener("DOMContentLoaded", function () {
   const md = window.markdownit();
