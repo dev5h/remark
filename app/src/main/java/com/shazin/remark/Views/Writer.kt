@@ -49,9 +49,11 @@
     import androidx.compose.ui.unit.dp
     import androidx.compose.ui.unit.sp
     import androidx.compose.ui.viewinterop.AndroidView
+    import androidx.lifecycle.viewmodel.compose.viewModel
     import androidx.navigation.NavHostController
     import com.shazin.remark.MyWebViewClient
     import com.shazin.remark.R
+    import com.shazin.remark.VM.WriterVM
     import com.shazin.remark.getPreviewTemplate
     import com.shazin.remark.getRGB
 
@@ -60,9 +62,7 @@
     @Composable
     fun Writer(navHostController: NavHostController){
         val context = LocalContext.current
-        val showPreview = remember {
-            mutableStateOf(false)
-        }
+        val wvm = viewModel<WriterVM>()
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -73,7 +73,7 @@
                         }
                     },
                     actions = {
-                        IconButton(onClick = { showPreview.value = !showPreview.value }) {
+                        IconButton(onClick = { wvm.isPreviewOpen.value = !wvm.isPreviewOpen.value }) {
                             Icon(imageVector = ImageVector.vectorResource(R.drawable.visibility), contentDescription ="Preview Icon" )
                         }
                     }
@@ -83,7 +83,7 @@
             Box(modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)){
-                if (!showPreview.value){
+                if (!wvm.isPreviewOpen.value){
                     Writer_Input(navHostController = navHostController)
                 }else {
                     WebViewScreen(context = context)
@@ -166,7 +166,9 @@
                     }
                 )
             if (isLoading.value)  {
-                Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center){
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center){
                     LinearProgressIndicator()
                 }
             }
