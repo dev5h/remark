@@ -1,6 +1,6 @@
 const container = document.getElementById("container");
 const md = window.markdownit();
-const bg = get("bg");
+const bg = "black"
 const textColor = get("fg");
 window.onload = function () {
   // set the bg
