@@ -3,9 +3,8 @@ const md = window.markdownit();
 
 document.addEventListener("DOMContentLoaded", function () {
   const md = window.markdownit();
-  document.getElementById("container").innerHTML = md.render(
-    document.getElementById("container").innerText
-  );
+  container.innerHTML = md.render(container.innerText);
+  // container.innerHTML = marked.parse(container.innerHTML);
   renderMathInElement(container, {
     // customised options
     // • auto-render specific keys, e.g.:
