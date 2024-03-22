@@ -1,6 +1,11 @@
 const container = document.getElementById("container");
 document.addEventListener("DOMContentLoaded", function () {
-  container.innerHTML = marked.parse(container.innerText);
+  markdownText = markdownText.replace(/\$\$([^$]+)\$\$/g, function(match, contents) {
+    // Escape asterisks
+    return match.replace(/\*/g, "\\*");
+});
+  );
+  container.innerHTML = markdownText;
   renderMathInElement(container, {
     // customised options
     // • auto-render specific keys, e.g.:
@@ -14,4 +19,3 @@ document.addEventListener("DOMContentLoaded", function () {
     throwOnError: false,
   });
 });
-
