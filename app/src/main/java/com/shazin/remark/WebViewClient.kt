@@ -44,7 +44,7 @@ class MyWebViewClient(
             var styleTag = document.createElement('style');
             styleTag.innerHTML = `
                 pre {
-                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0f))}
+                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0.3f))}
             }
             `;
             document.head.appendChild(styleTag);

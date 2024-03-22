@@ -14,10 +14,11 @@ import java.io.InputStreamReader
 
 fun getRGB(color: Color): String{
     val argb = color.toArgb()
+    val alpha = (argb shr 24) and 0xFF
     val red = (argb shr 16) and 0xFF
     val green = (argb shr 8) and 0xFF
     val blue = argb and 0xFF
-    return "rgb($red, $green, $blue)"
+    return "rgba($red, $green, $blue, ${alpha.toFloat() / 255})"
 }
 
 
