@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
   lamo
   ## Code Snippet Samples
   Hello
+  ### Code
+  \`\`\`html
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Example</title>
+        </head>
+        <body>
+            <h1>Hello, World!</h1>
+        </body>
+        </html>
+        \`\`\`
   `;
   container.innerHTML = md.render(test);
   // container.innerHTML = marked.parse(container.innerHTML);
