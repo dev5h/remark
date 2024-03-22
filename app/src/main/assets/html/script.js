@@ -2,23 +2,7 @@ const container = document.getElementById("container");
 
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize markdown-it with highlightjs plugin
-  var md = window.markdownit({
-    highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          // Highlight the code using highlight.js
-          return (
-            '<code class="inhj">' +
-            hljs.highlight(lang, str, true).value +
-            "</code>"
-          );
-        } catch (__) {}
-      }
-
-      // Use default highlighting for inline code
-      return "<code>" + md.utils.escapeHtml(str) + "</code>";
-    },
-  });
+  var md = window.markdownit();
   const test = `
   # Hello this is some markdown texts
   Hello world lamo here's a math formula for ya
