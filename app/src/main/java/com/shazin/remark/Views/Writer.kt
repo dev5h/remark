@@ -7,6 +7,7 @@
     import android.webkit.WebView
     import android.webkit.WebViewClient
     import androidx.compose.foundation.background
+    import androidx.compose.foundation.isSystemInDarkTheme
     import androidx.compose.foundation.layout.Box
     import androidx.compose.foundation.layout.Column
     import androidx.compose.foundation.layout.fillMaxSize
@@ -61,6 +62,7 @@
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Writer(navHostController: NavHostController){
+
         val context = LocalContext.current
         val wvm = viewModel<WriterVM>()
         Scaffold(
@@ -140,7 +142,7 @@
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
-
+        val isSystemInDarkMode = isSystemInDarkTheme()
         val isLoading = remember{mutableStateOf(true)}
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -154,7 +156,7 @@
                         webView.apply {
                             settings.javaScriptEnabled = true
                             settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false})
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode)
 
 
                         }
