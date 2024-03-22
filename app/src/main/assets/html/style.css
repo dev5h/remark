@@ -1,10 +1,10 @@
 @font-face {
   font-family: ps_regular;
-  src: url(fonts/ProductSans-Regular.ttf);
+  src: url(fonts/ProductSans-Regular.woff);
 }
 @font-face {
   font-family: ps_bold;
-  src: url(fonts/ProductSans-Bold.ttf);
+  src: url(fonts/ProductSans-Bold.woff);
 }
 @font-face {
   font-family: ps_black;
