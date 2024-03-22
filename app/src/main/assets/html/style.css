@@ -52,9 +52,13 @@ div#container:focus {
   outline: none;
 }
 
-#container textarea {
-  padding: 10px 0px;
-  display: block;
-  width: 100%;
-  border: none;
+pre {
+  padding: 7px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin: 12px auto;
+}
+
+p {
+  padding: 11px 0px;
 }

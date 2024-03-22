@@ -43,8 +43,8 @@ class MyWebViewClient(
         val injectionJS= """
             var styleTag = document.createElement('style');
             styleTag.innerHTML = `
-                code {
-                background: ${getRGB(colorScheme.surfaceVariant)}
+                pre {
+                background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0f))}
             }
             `;
             document.head.appendChild(styleTag);
