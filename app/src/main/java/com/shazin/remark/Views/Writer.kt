@@ -48,6 +48,7 @@
     import androidx.compose.ui.unit.sp
     import androidx.compose.ui.viewinterop.AndroidView
     import androidx.navigation.NavHostController
+    import com.shazin.remark.MyWebViewClient
     import com.shazin.remark.R
     import com.shazin.remark.getPreviewTemplate
     import com.shazin.remark.getRGB
@@ -146,7 +147,7 @@
                 webView.apply {
                     settings.javaScriptEnabled = true
                     settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                    webViewClient = WebViewClient()
+                    webViewClient = MyWebViewClient(fg = getRGB(onBg))
 
 
                 }

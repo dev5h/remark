@@ -1,11 +1,14 @@
 package com.shazin.remark
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 
-class MyWebViewClient : WebViewClient() {
+class MyWebViewClient(
+    val fg: String
+) : WebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
         request: WebResourceRequest?
@@ -23,6 +26,9 @@ class MyWebViewClient : WebViewClient() {
 
     override fun onPageFinished(view: WebView?, url: String?) {
         // This method is called when the WebView finishes loading a page.
+        if (view != null) {
+            view.evaluateJavascript("document.body.style.color = 'red'",null)
+        }
         // You can perform actions here, such as hiding a loading indicator.
         super.onPageFinished(view, url)
     }
