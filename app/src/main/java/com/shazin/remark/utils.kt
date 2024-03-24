@@ -11,6 +11,7 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.util.UUID
 
 fun getRGB(color: Color): String{
     val argb = color.toArgb()
@@ -19,6 +20,10 @@ fun getRGB(color: Color): String{
     val green = (argb shr 8) and 0xFF
     val blue = argb and 0xFF
     return "rgba($red, $green, $blue, ${alpha.toFloat() / 255})"
+}
+fun generateUUID(): String {
+    val uuid = UUID.randomUUID()
+    return uuid.toString()
 }
 
 

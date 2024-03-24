@@ -3,6 +3,7 @@ package com.shazin.remark.VM
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.shazin.remark.generateUUID
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,10 +12,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(FlowPreview::class)
 class WriterVM:ViewModel() {
-    val inputText = mutableStateOf("")
     val isPreviewOpen = mutableStateOf(false)
     private val _text = MutableStateFlow("")
     val text: StateFlow<String> = _text
+    val uuid = mutableStateOf(generateUUID())
 
     init {
         viewModelScope.launch {
@@ -33,6 +34,6 @@ class WriterVM:ViewModel() {
     }
 
     private fun saveToDatabase(text: String) {
-
+        
     }
 }

@@ -9,7 +9,7 @@ data class Note(
     val createdAt: Long,
     val updatedAt: Long,
 )
-fun serializeNoteFile(note: Note){
+fun serializeNoteFile(note: Note): String{
     val gson = Gson()
-    return gson.
+    return gson.toJson(note)
 }
