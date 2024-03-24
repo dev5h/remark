@@ -54,19 +54,30 @@
     import androidx.lifecycle.viewmodel.compose.viewModel
     import androidx.navigation.NavHostController
     import com.shazin.remark.MyWebViewClient
+    import com.shazin.remark.Note
     import com.shazin.remark.R
     import com.shazin.remark.VM.WriterVM
     import com.shazin.remark.getPreviewTemplate
     import com.shazin.remark.getRGB
     import kotlinx.coroutines.flow.collect
+    import java.util.Date
 
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Writer(navHostController: NavHostController){
-
         val context = LocalContext.current
         val wvm = viewModel<WriterVM>()
+        if (wvm.writeFile.value){
+            val note = Note(
+                uuid = "test",
+                body = "fuck",
+                createdAt = Date().time,
+                updatedAt = Date().time
+            )
+            println("Written")
+            wvm.writeFile.value = false
+        }
         Scaffold(
             topBar = {
                 TopAppBar(

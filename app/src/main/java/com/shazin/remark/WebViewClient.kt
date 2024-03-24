@@ -56,7 +56,7 @@ class MyWebViewClient(
             document.head.appendChild(styleTag);
         """.trimIndent()
         view?.evaluateJavascript(injectionJS,null)
-        val contentInjectionUpper = getAssetString(context = context, file_path = "raw/js_upper.txt")
+
         val contentInjection = """
             const test = 
              `${escapeSpecialCharacters(inputText)}`
@@ -74,8 +74,8 @@ class MyWebViewClient(
             
             console.log(container.innerHTML)
         """.trimIndent()
-        val contentInjectionLower = getAssetString(context = context, file_path = "raw/js_lower.txt")
-        println("Injecting $contentInjection")
+
+
         view?.evaluateJavascript(  contentInjection ,null)
         onLoad()
         super.onPageFinished(view, url)

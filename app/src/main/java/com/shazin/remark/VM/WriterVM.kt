@@ -19,6 +19,7 @@ class WriterVM:ViewModel() {
     val isPreviewOpen = mutableStateOf(false)
     private val _text = MutableStateFlow("")
     val text: StateFlow<String> = _text
+    val writeFile = mutableStateOf(false)
     val uuid = mutableStateOf(generateUUID())
     init {
         viewModelScope.launch {
@@ -37,12 +38,6 @@ class WriterVM:ViewModel() {
     }
 
     private fun saveToDatabase(text: String) {
-        val note = Note(
-            uuid = uuid.value,
-            body = text,
-            createdAt = Date().time,
-            updatedAt = Date().time
-        )
-
+        writeFile.value = true
     }
 }
