@@ -63,7 +63,7 @@ fun HomeHeader(navHostController: NavHostController){
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ){
-        Text(text = "Notes", style = MaterialTheme.typography.displayLarge)
+        Text(text = "remark", style = MaterialTheme.typography.displayLarge)
         Spacer(modifier = Modifier.height(25.dp))
         // Search
         SearchBox()

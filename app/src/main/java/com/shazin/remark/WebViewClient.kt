@@ -1,5 +1,6 @@
 package com.shazin.remark
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.webkit.WebResourceRequest
@@ -14,7 +15,9 @@ class MyWebViewClient(
     val fg: String,
     val onLoad: ()->Unit,
     val isSystemInDarkTheme: Boolean,
-    val colorScheme: ColorScheme
+    val colorScheme: ColorScheme,
+    val context: Context,
+    val inputText: String
 ) : WebViewClient() {
     override fun shouldOverrideUrlLoading(
         view: WebView?,
@@ -43,7 +46,7 @@ class MyWebViewClient(
         val injectionJS= """
             var styleTag = document.createElement('style');
             styleTag.innerHTML = `
-                pre {
+                .hjljs-container {
                 background: ${getRGB(colorScheme.surfaceVariant.copy(alpha = 0.3f))};
                 color: ${getRGB(colorScheme.onSurfaceVariant)};
                 }
@@ -55,6 +58,27 @@ class MyWebViewClient(
             document.head.appendChild(styleTag);
         """.trimIndent()
         view?.evaluateJavascript(injectionJS,null)
+        val contentInjectionUpper = getAssetString(context = context, file_path = "raw/js_upper.txt")
+        val contentInjection = """
+            const test = 
+             `${escapeSpecialCharacters(inputText)}`
+              ;
+            container.innerHTML = md.render(test);
+            renderMathInElement(container, {
+              delimiters: [
+                { left: "\${'$'}{'${'$'}'}\{'${'$'}'}\${'$'}{'${'$'}'}\{'${'$'}'}", right: "${'$'}\{'${'$'}'}${'$'}\{'${'$'}'}", display: true },
+                { left: "${'$'}\{'${'$'}'}", right: "${'$'}\{'${'$'}'}", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true },
+              ],
+              throwOnError: false,
+            });
+            
+            console.log(container.innerHTML)
+        """.trimIndent()
+        val contentInjectionLower = getAssetString(context = context, file_path = "raw/js_lower.txt")
+        println("Injecting $contentInjection")
+        view?.evaluateJavascript(  contentInjection ,null)
         onLoad()
         super.onPageFinished(view, url)
     }

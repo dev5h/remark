@@ -86,9 +86,9 @@
                 .fillMaxSize()
                 .padding(paddingValues)){
                 if (!wvm.isPreviewOpen.value){
-                    Writer_Input(navHostController = navHostController)
+                    Writer_Input(navHostController = navHostController, wvm = wvm)
                 }else {
-                    WebViewScreen(context = context)
+                    WebViewScreen(context = context, wvm = wvm)
                 }
             }
         }
@@ -96,7 +96,7 @@
 
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    fun Writer_Input(navHostController: NavHostController){
+    fun Writer_Input(navHostController: NavHostController, wvm: WriterVM){
         val textState = remember { mutableStateOf("") }
         val keyboardController = LocalSoftwareKeyboardController.current
         val focusRequester = FocusRequester()
@@ -122,9 +122,9 @@
                             .fillMaxWidth()
                             .weight(1f)
                             .focusRequester(focusRequester),
-                        value = textState.value,
+                        value = wvm.inputText.value,
                         cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
-                        onValueChange = {textState.value = it},
+                        onValueChange = {wvm.inputText.value = it},
                         textStyle = TextStyle(
                             color = MaterialTheme.colorScheme.onBackground,
                         ),
@@ -137,7 +137,7 @@
 
 
     @Composable
-    fun WebViewScreen(context: Context){
+    fun WebViewScreen(context: Context, wvm: WriterVM){
         val htmlTemplate = getPreviewTemplate(context)
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
@@ -157,7 +157,7 @@
                         webView.apply {
                             settings.javaScriptEnabled = true
                             settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode, colorScheme = colorScheme)
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode, colorScheme = colorScheme, context = context, inputText = wvm.inputText.value)
 
 
                         }

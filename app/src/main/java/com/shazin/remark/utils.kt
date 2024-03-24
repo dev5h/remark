@@ -39,3 +39,18 @@ fun getPreviewTemplate(context: Context): String{
     string  = string.replace("fgColor", getRGB( m3c.onBackground))
     return string
 }
+
+
+fun getAssetString(context: Context, file_path:String): String{
+    val input = context.assets.open(file_path)
+    val bufferedReader = BufferedReader(InputStreamReader(input))
+    val stringBuilder = StringBuilder()
+    var line: String?
+    while (bufferedReader.readLine().also { line = it } != null) {
+        stringBuilder.append(line)
+    }
+    return  stringBuilder.toString()
+}
+fun escapeSpecialCharacters(input: String): String {
+    return input.replace("[`\\{}]".toRegex(), "\\\\$0")
+}

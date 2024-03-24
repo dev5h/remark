@@ -1,0 +1,15 @@
+`
+container.innerHTML = md.render(test)
+// container.innerHTML = marked.parse(container.innerHTML)
+renderMathInElement(container, {
+// customised options
+// • auto-render specific keys, e.g.:
+delimiters: [
+{ left: "$$", right: "$$", display: true },
+{ left: "$", right: "$", display: false },
+{ left: "\\(", right: "\\)", display: false },
+{ left: "\\[", right: "\\]", display: true },
+],
+throwOnError: false,
+})
+})

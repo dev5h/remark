@@ -55,7 +55,7 @@ div#container:focus {
 pre {
   padding: 11px 7px;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 0px;
   margin: 12px auto;
 }
 
@@ -66,4 +66,13 @@ p code {
   margin: 0px 3px;
   padding: 1px 7px;
   border-radius: 9px;
+}
+
+.hjljs-container {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hjljs-container pre {
+  overflow-x: auto;
 }
