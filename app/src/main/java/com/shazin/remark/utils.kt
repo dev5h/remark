@@ -52,5 +52,5 @@ fun getAssetString(context: Context, file_path:String): String{
     return  stringBuilder.toString()
 }
 fun escapeSpecialCharacters(input: String): String {
-    return input.replace("[`\\{}]".toRegex(), "\\\\$0")
+    return input.replace("[`\\\\\\{}]".toRegex(), "\\\\$0")
 }
