@@ -20,7 +20,8 @@ class DataStore(
     val context: Context
 ){
     private fun saveLocal(uuid: String, json: String){
-        val path = context.dataDir.path.plus("${uuid}.db")
+
+        val path = context.dataDir.path.plus("/${uuid}.db")
         File(path).writeText(json)
     }
     fun saveNote(note: Note){

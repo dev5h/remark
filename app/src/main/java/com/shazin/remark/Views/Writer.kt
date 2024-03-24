@@ -53,6 +53,7 @@
     import androidx.compose.ui.viewinterop.AndroidView
     import androidx.lifecycle.viewmodel.compose.viewModel
     import androidx.navigation.NavHostController
+    import com.shazin.remark.DataStore
     import com.shazin.remark.MyWebViewClient
     import com.shazin.remark.Note
     import com.shazin.remark.R
@@ -70,12 +71,12 @@
         val wvm = viewModel<WriterVM>()
         if (wvm.writeFile.value){
             val note = Note(
-                uuid = "test",
-                body = "fuck",
+                uuid = wvm.uuid.value,
+                body = wvm.text.collectAsState().toString(),
                 createdAt = Date().time,
                 updatedAt = Date().time
             )
-            println("Written")
+            DataStore(context).saveNote(note)
             wvm.writeFile.value = false
         }
         Scaffold(
