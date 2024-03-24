@@ -30,6 +30,7 @@
     import androidx.compose.material3.TopAppBar
     import androidx.compose.runtime.Composable
     import androidx.compose.runtime.LaunchedEffect
+    import androidx.compose.runtime.collectAsState
     import androidx.compose.runtime.mutableStateOf
     import androidx.compose.runtime.remember
     import androidx.compose.ui.Alignment
@@ -57,6 +58,7 @@
     import com.shazin.remark.VM.WriterVM
     import com.shazin.remark.getPreviewTemplate
     import com.shazin.remark.getRGB
+    import kotlinx.coroutines.flow.collect
 
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -97,7 +99,7 @@
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     fun Writer_Input(navHostController: NavHostController, wvm: WriterVM){
-        
+        val inputText = wvm.text.collectAsState()
         val keyboardController = LocalSoftwareKeyboardController.current
         val focusRequester = FocusRequester()
         Column(modifier = Modifier
@@ -122,9 +124,9 @@
                             .fillMaxWidth()
                             .weight(1f)
                             .focusRequester(focusRequester),
-                        value = wvm.inputText.value,
+                        value = inputText.value,
                         cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
-                        onValueChange = {wvm.inputText.value = it},
+                        onValueChange = {wvm.updateText(it)},
                         textStyle = TextStyle(
                             color = MaterialTheme.colorScheme.onBackground,
                         ),
@@ -138,7 +140,7 @@
 
     @Composable
     fun WebViewScreen(context: Context, wvm: WriterVM){
-        val htmlTemplate = getPreviewTemplate(context)
+        val inputText = wvm.text.collectAsState().value
         val bg =MaterialTheme.colorScheme.background
         val onBg =MaterialTheme.colorScheme.onBackground
         val webView = remember { WebView(context) }
@@ -157,7 +159,7 @@
                         webView.apply {
                             settings.javaScriptEnabled = true
                             settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode, colorScheme = colorScheme, context = context, inputText = wvm.inputText.value)
+                            webViewClient = MyWebViewClient(fg = getRGB(onBg), onLoad = {isLoading.value =false}, isSystemInDarkTheme = isSystemInDarkMode, colorScheme = colorScheme, context = context, inputText = inputText)
 
 
                         }
