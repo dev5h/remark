@@ -97,7 +97,7 @@
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     fun Writer_Input(navHostController: NavHostController, wvm: WriterVM){
-        val textState = remember { mutableStateOf("") }
+        
         val keyboardController = LocalSoftwareKeyboardController.current
         val focusRequester = FocusRequester()
         Column(modifier = Modifier
