@@ -1,5 +1,6 @@
 package com.shazin.remark.VM
 
+import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +20,6 @@ class WriterVM:ViewModel() {
     private val _text = MutableStateFlow("")
     val text: StateFlow<String> = _text
     val uuid = mutableStateOf(generateUUID())
-
     init {
         viewModelScope.launch {
             _text.debounce(1000)
@@ -43,6 +43,6 @@ class WriterVM:ViewModel() {
             createdAt = Date().time,
             updatedAt = Date().time
         )
-        DataStore()
+
     }
 }
