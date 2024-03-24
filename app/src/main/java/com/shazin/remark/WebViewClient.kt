@@ -65,14 +65,14 @@ class MyWebViewClient(
               ;
             container.innerHTML = md.render(test);
             renderMathInElement(container, {
-              delimiters: [
-                { left: "\${'$'}{'${'$'}'}\{'${'$'}'}\${'$'}{'${'$'}'}\{'${'$'}'}", right: "${'$'}\{'${'$'}'}${'$'}\{'${'$'}'}", display: true },
-                { left: "${'$'}\{'${'$'}'}", right: "${'$'}\{'${'$'}'}", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true },
-              ],
-              throwOnError: false,
-            });
+        delimiters: [
+        { left: "${'$'}${'$'}", right: "${'$'}${'$'}", display: true },
+        { left: "${'$'}", right: "${'$'}", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true },
+        ],
+        throwOnError: false,
+        })
             
             console.log(container.innerHTML)
         """.trimIndent()
