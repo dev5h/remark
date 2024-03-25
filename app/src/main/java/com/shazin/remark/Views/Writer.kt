@@ -72,7 +72,7 @@
         if (wvm.writeFile.value){
             val note = Note(
                 uuid = wvm.uuid.value,
-                body = wvm.text.collectAsState().toString(),
+                body = wvm.text.collectAsState().value,
                 createdAt = Date().time,
                 updatedAt = Date().time
             )
